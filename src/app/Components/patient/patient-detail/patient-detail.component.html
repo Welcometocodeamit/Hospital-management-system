@@ -1,0 +1,108 @@
+<div class="patientDetail">
+
+    <div>
+        <h2>Undergoing Treatments</h2>
+    </div>
+
+    <div  style="display: flex; justify-content: space-evenly; width: 100%;">
+        <div >
+            <mat-card class="patientCard">
+                <mat-card-header>
+                  <mat-card-title>{{particularPatient.name}}</mat-card-title>
+                </mat-card-header>
+
+                <mat-card-content>Address: {{particularPatient.address}}</mat-card-content>
+                <mat-card-content>phone: {{particularPatient.phone}}</mat-card-content>
+
+                <mat-card-actions>
+                  <button mat-raised-button color="accent" (click)="openDialog()">Edit</button>&nbsp; &nbsp;&nbsp; 
+                  <button mat-raised-button color="warn" (click)="deletePatient()">Delete</button>
+                </mat-card-actions>
+              </mat-card>
+        </div>
+        <div *ngIf="patientDetail!=null">
+            <table border="2px" >
+                <thead>
+                    <tr>
+                        <th colspan="2">Treatment details</th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+                    <tr>
+                        <td>Treatment Name</td>
+                        <td>{{patientDetail.procedure.name}}</td>
+                    </tr>
+    
+                    <tr>
+                        <td>Treatment Cost</td>
+                        <td>{{patientDetail.procedure.cost}}</td>
+                    </tr>
+    
+                    <tr>
+                        <th colspan="2">Physician details</th>
+                    </tr>
+    
+                    <tr>
+                        <td>Physician Name</td>
+                        <td>{{patientDetail.physician.name}}</td>
+                    </tr>
+    
+                    <tr>
+                        <td>Physician Position</td>
+                        <td>{{patientDetail.physician.position}}</td>
+                    </tr>
+    
+                    <tr>
+                        <th colspan="2">Nurse details</th>
+                    </tr>
+    
+                    <tr>
+                        <td>Nurse Name</td>
+                        <td>{{patientDetail.nurse.name}}</td>
+                    </tr>
+    
+                    <tr>
+                        <td>Nurse Position</td>
+                        <td>{{patientDetail.nurse.position}}</td>
+                    </tr>
+    
+                    <tr>
+                        <th colspan="2">Stay details</th>
+                    </tr>
+    
+                    <tr>
+                        <td>Stay Start Date</td>
+                        <td>{{patientDetail.stay.startDateTime | date }}</td>
+                    </tr>
+    
+                    <tr>
+                        <td>Stay End Date</td>
+                        <td>{{patientDetail.stay.endDateTime | date}}</td>
+                    </tr>
+    
+                    <tr>
+                        <td>Room no.</td>
+                        <td>{{patientDetail.stay.room.roomNumber}}</td>
+                    </tr>
+    
+                    <tr>
+                        <td>Room Type</td>
+                        <td>{{patientDetail.stay.room.roomType}}</td>
+                    </tr>
+    
+                    <tr>
+                        <td>Block Floor</td>
+                        <td>{{patientDetail.stay.room.block.blockFloor}}</td>
+                    </tr>
+    
+                    <tr>
+                        <td>Block Code</td>
+                        <td>{{patientDetail.stay.room.block.blockCode}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

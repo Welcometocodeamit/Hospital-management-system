@@ -1,0 +1,60 @@
+.physicianDetail{
+    margin: 40px;
+}
+
+.physicianDetailHead{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.example-card{
+    width: auto;
+    max-width: 400px;
+}
+
+.physicianDetailBody{
+    display: flex;
+    justify-content: space-between;
+}
+
+.physicianDetailCertifications{
+    width: 40%;
+    margin: 100px 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.physicianDetailAppointments{
+    width: 40%;
+    margin: 100px 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.certificateCard{
+    background-color: rgb(109, 55, 211);
+    color: whitesmoke;
+}
+
+.appointmentCard{
+    background-color: rgb(209, 217, 217);
+}
+
+.physicianDetailFooter{
+    margin: 10px;
+}
+.physicianDetailButton{
+    
+   /* width: 300px; */
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}

@@ -1,0 +1,57 @@
+<div class="physicianDetailFooter">
+    <div class="physicianDetailButton">
+        <button mat-raised-button color="accent" (click)="openDialog()">Edit</button>
+        <button mat-raised-button color="warn" (click)="deletePhysician()">Delete</button>
+    </div>
+</div>
+
+<div class="physicianDetail">
+    <mat-card class="physicianDetailHead">
+        <mat-card-header><b style="font-size: large;">{{physicianDetail.name}}</b></mat-card-header>
+        <mat-card-content>{{physicianDetail.position}}</mat-card-content>
+    </mat-card>
+
+    <div class="physicianDetailBody">
+
+        <div class="physicianDetailCertifications">
+
+            <h2>Certifications</h2>
+
+            <mat-card class="example-card certificateCard" *ngFor="let certificate of physicianDetail.trainedIn">
+                <mat-card-header>
+                  <mat-card-title-group>
+                    <mat-card-title>{{certificate.treatment.name}}</mat-card-title>
+                    <mat-card-subtitle>Certificate No. {{certificate.treatment.procedureId}}</mat-card-subtitle>
+                  </mat-card-title-group>
+                </mat-card-header>
+                <mat-card-content>
+                    Certification Date: {{certificate.certificationDate |date}} <br>
+                    Expire Date: {{certificate.certificationExpires | date}}
+                </mat-card-content>
+            </mat-card>
+
+        </div>
+
+        <div class="physicianDetailAppointments">
+
+            <h2>Appointments</h2>
+            
+            <mat-card class="example-card appointmentCard" *ngFor="let appointment of physicianDetail.appointments">
+                <mat-card-header>
+                  <mat-card-title-group>
+                    <mat-card-title>Patient name: {{appointment.patient.name}}</mat-card-title>
+                  </mat-card-title-group>
+                </mat-card-header>
+                <mat-card-content>
+                    Appointment Start Time: {{appointment.starDateTime |date : 'MMM d, y, h:mm:ss a'}} <br>
+                    Appointment End Time: {{appointment.endDateTime | date : 'MMM d, y, h:mm:ss a'}}
+                </mat-card-content>
+            </mat-card>
+
+
+        </div>
+
+    </div>
+
+   
+</div>

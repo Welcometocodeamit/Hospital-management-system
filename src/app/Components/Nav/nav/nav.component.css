@@ -1,0 +1,21 @@
+.nav{
+    display: flex;
+    justify-content: space-between;
+    /* background-color: rgb(188, 207, 195); */
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.active{
+    background-color: rgb(92, 44, 165);
+    font-weight: 800;
+}
+
+/* #logoutbtnnav{
+    color: rgb(231, 127, 127);
+} */
+
+.cartbtn{
+    background-color: rgb(22, 24, 93);
+}
