@@ -26,12 +26,24 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { PatientDetailComponent } from './Components/patient/patient-detail/patient-detail.component';
 import { PatientPopupComponent } from './Components/patient/patient-popup/patient-popup.component';
+import { NursePopupComponent } from './Components/nurse/nurse-popup/nurse-popup.component';
+import { MatSelectModule } from '@angular/material/select';
+import { AppointmentDetailComponent } from './Components/appointment/appointment-detail/appointment-detail.component';
+import { AppointmentDialogComponent } from './Components/appointment/appointment-dialog/appointment-dialog.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
+import { PrescriptionComponent } from './Components/appointment/prescription/prescription.component';
+import { OnCallComponent } from './Components/nurse/on-call/on-call.component';
+import { OnCallDialogComponent } from './Components/nurse/on-call/on-call-dialog/on-call-dialog.component';
+import { AddCertificateComponent } from './Components/physician/physician-detail/add-certificate/add-certificate.component';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 const routes: Routes = [
   {path:'Physician', component:PhysicianComponent },
   {path:'Physician/:physicianId', component:PhysicianDetailComponent },
   {path:'Treatment', component:TreatmentComponent  },
   {path:'Appointment', component:AppointmentComponent },
+  {path:'Appointment/:appointmentId', component:AppointmentDetailComponent },
   {path:'Nurse', component:NurseComponent },
   {path:'Patient', component:PatientComponent },
   {path:'Patient/:patientId', component:PatientDetailComponent },
@@ -50,7 +62,14 @@ const routes: Routes = [
     PhysicianDetailComponent,
     UpdatePhysicianComponent,
     PatientDetailComponent,
-    PatientPopupComponent
+    PatientPopupComponent,
+    NursePopupComponent,
+    AppointmentDetailComponent,
+    AppointmentDialogComponent,
+    PrescriptionComponent,
+    OnCallComponent,
+    OnCallDialogComponent,
+    AddCertificateComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +86,11 @@ const routes: Routes = [
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatOptionModule,
+    NgxSpinnerModule,
     RouterModule.forRoot(routes),
 
   ],

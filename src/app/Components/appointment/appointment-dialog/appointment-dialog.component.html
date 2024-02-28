@@ -1,0 +1,57 @@
+<div class="appointmentDialog">
+    <h2 mat-dialog-title>{{this.data.method}} Appointment</h2>
+<mat-dialog-content class="mat-typography">
+
+    <div>
+        <form  id="appointmentForm" [formGroup]="appointmentForm" class="reg">
+  
+            <mat-form-field>
+                <mat-label>Patient</mat-label>
+                <mat-select formControlName="patientId">
+                  <mat-option *ngFor="let patient of patients" [value]="patient.patientId">
+                    {{patient.name}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Physician</mat-label>
+                <mat-select formControlName="physicianId">
+                  <mat-option *ngFor="let physician of physicians" [value]="physician.physicianId">
+                    {{physician.name}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Appointment By</mat-label>
+                <mat-select formControlName="onCallId">
+                  <mat-option *ngFor="let o of oncalls" [value]="o.onCallId">
+                    {{o.nurse.name}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+           
+
+            <mat-form-field>
+                <mat-label>Select Appointment Date</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                  <input formControlName="startDateTime" matStartDate placeholder="Start date" >
+                  <input formControlName="endDateTime" matEndDate placeholder="End date" >
+                </mat-date-range-input>
+                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+
+
+          </form>
+    </div>
+  
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="update()">{{this.data.method}} Appointment</button>
+</mat-dialog-actions>
+</div>

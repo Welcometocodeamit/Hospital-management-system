@@ -1,0 +1,4 @@
+#appointmentForm{
+    display: flex;
+    flex-direction: column;
+}

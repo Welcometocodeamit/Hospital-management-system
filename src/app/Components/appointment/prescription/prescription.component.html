@@ -1,0 +1,29 @@
+<div>
+    <h2 mat-dialog-title>{{this.data.method}} Prescription</h2>
+<mat-dialog-content class="mat-typography">
+
+    <div>
+        <form  id="prescriptionForm" [formGroup]="prescriptionForm" class="reg">
+  
+            <mat-form-field>
+                <mat-label>Medications</mat-label>
+                <mat-select formControlName="medication">
+                  <mat-option *ngFor="let m of medication" [value]="m.medicationId">
+                    {{m.name}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="feild">
+                <mat-label>Dose details</mat-label>
+                <input matInput formControlName="dose">
+            </mat-form-field>
+          </form>
+    </div>
+  
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="Add()">{{this.data.method}} Prescription</button>
+</mat-dialog-actions>
+</div>

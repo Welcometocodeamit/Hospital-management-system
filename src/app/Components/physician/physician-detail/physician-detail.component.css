@@ -5,6 +5,7 @@
 .physicianDetailHead{
     display: flex;
     justify-content: space-evenly;
+    box-shadow: 5px 5px 15px 10px rgba(0, 0, 0.2, 0.2);
 }
 
 .example-card{
@@ -14,38 +15,43 @@
 
 .physicianDetailBody{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
 }
 
 .physicianDetailCertifications{
     width: 40%;
     margin: 100px 20px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     border-radius: 5px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    box-shadow: 5px 5px 15px 10px rgba(0, 0, 0.2, 0.2);
 }
 
 .physicianDetailAppointments{
     width: 40%;
+    /* box-shadow: 5px 5px 15px 10px rgba(0, 0, 0.2, 0.2); */
     margin: 100px 20px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     border-radius: 5px;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 .certificateCard{
     background-color: rgb(109, 55, 211);
+    box-shadow: 5px 5px 15px 10px rgba(0, 0, 0.2, 0.2);
     color: whitesmoke;
 }
 
 .appointmentCard{
-    background-color: rgb(209, 217, 217);
+    background-color: rgb(164, 171, 173);
+    box-shadow: 5px 5px 15px 10px rgba(0, 0, 0.2, 0.2);
+    margin: 15px;
 }
 
 .physicianDetailFooter{

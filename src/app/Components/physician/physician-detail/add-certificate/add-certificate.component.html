@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>Issue Certificate</h2>
+<mat-dialog-content class="mat-typography">
+
+    <div>
+        <form  id="certificateForm" [formGroup]="certificateForm" class="reg">
+  
+            <mat-form-field>
+                <mat-label>Procedure</mat-label>
+                <mat-select formControlName="treatment">
+                  <mat-option *ngFor="let t of treatments" [value]="t.procedureId">
+                    {{t.name}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Select Certification Date</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                  <input formControlName="certificationDate" matStartDate placeholder="Start date" >
+                  <input formControlName="certificationExpires" matEndDate placeholder="End date" >
+                </mat-date-range-input>
+                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+
+          </form>
+    </div>
+  
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="create()">Issue</button>
+</mat-dialog-actions>
+

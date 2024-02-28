@@ -17,7 +17,9 @@
 
             <h2>Certifications</h2>
 
-            <mat-card class="example-card certificateCard" *ngFor="let certificate of physicianDetail.trainedIn">
+            <div><button mat-raised-button color="primary" (click)="openDialogCertificate()">Issue Certificate</button></div><br>
+
+            <mat-card class="example-card certificateCard" style="margin: 15px;" *ngFor="let certificate of physicianDetail.trainedIn">
                 <mat-card-header>
                   <mat-card-title-group>
                     <mat-card-title>{{certificate.treatment.name}}</mat-card-title>
@@ -28,6 +30,7 @@
                     Certification Date: {{certificate.certificationDate |date}} <br>
                     Expire Date: {{certificate.certificationExpires | date}}
                 </mat-card-content>
+                <mat-card-footer style="display: flex; justify-content: flex-end; margin: 10px;"><button mat-raised-button color="warn" (click)="delete(certificate)">Delete</button></mat-card-footer>
             </mat-card>
 
         </div>

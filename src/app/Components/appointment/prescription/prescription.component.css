@@ -1,0 +1,4 @@
+#prescriptionForm{
+    display: flex;
+    flex-direction: column;
+}

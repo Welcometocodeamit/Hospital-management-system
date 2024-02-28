@@ -5,6 +5,8 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { HttpService } from 'src/app/Services/http.service';
 import { UpdatePhysicianComponent } from './update-physician/update-physician.component';
 import { BackendPhysician } from 'src/app/Models/UpdatePhysician';
+import { AddCertificateComponent } from './add-certificate/add-certificate.component';
+import { ApiserviceService } from 'src/app/Services/apiservice.service';
 
 @Component({
   selector: 'app-physician-detail',
@@ -13,10 +15,14 @@ import { BackendPhysician } from 'src/app/Models/UpdatePhysician';
 })
 export class PhysicianDetailComponent {
 
-  constructor(private activeRoute:ActivatedRoute, private http:HttpService, public dialog: MatDialog, private route:Router){}
+  constructor(private service:ApiserviceService, private activeRoute:ActivatedRoute, private http:HttpService, public dialog: MatDialog, private route:Router){}
   physicianDetail=null
   ngOnInit(){
     this.http.getPhysicianById(this.activeRoute.snapshot.params['physicianId']).subscribe((data)=>{
+      this.physicianDetail=data
+    })
+
+    this.service.physicianDetailSubject.subscribe((data)=>{
       this.physicianDetail=data
     })
   }
@@ -37,11 +43,31 @@ export class PhysicianDetailComponent {
     });
   }
 
+  openDialogCertificate() {
+    const dialogRef = this.dialog.open(AddCertificateComponent,
+      {data:{
+        physicianId:this.physicianDetail.physicianId
+      }});
+
+    dialogRef.afterClosed().subscribe(result => {
+       
+    });
+  }
+
   deletePhysician(){
     
     let deletePhysician:BackendPhysician={physicianId:this.physicianDetail.physicianId, name:this.physicianDetail.name, position:this.physicianDetail.position}
     this.http.deletePhysician(deletePhysician).subscribe((data)=>{
       this.route.navigate(['/Physician'])
+    })
+  }
+
+  delete(certificate){
+    let c={id:certificate.trainedInId, physicianId:certificate.physicianId, treatment:certificate.treatment.procedureId, certificationDate:certificate.certificationDate, certificationExpires:certificate.certificationExpires}
+    this.http.deleteCertificate(c).subscribe((data)=>{
+      this.http.getPhysicianById(this.physicianDetail.physicianId).subscribe((data)=>{
+        this.service.physicianDetailSubject.next(data)
+      })
     })
   }
 

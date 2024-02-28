@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>{{this.data.method}} Nurse</h2>
+<mat-dialog-content class="mat-typography">
+
+    <div>
+        <form  id="updatePhysicianForm" [formGroup]="nurseForm" class="reg">
+  
+            <mat-form-field class="feild">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+
+            <mat-form-field class="feild">
+                <mat-label>Position</mat-label>
+                <input matInput formControlName="position">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Registered</mat-label>
+                <mat-select formControlName="registered">
+                  <mat-option *ngFor="let g of registered" [value]="g">
+                    {{g}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+          </form>
+    </div>
+  
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="updateNurse()">{{this.data.method}} Nurse</button>
+</mat-dialog-actions>

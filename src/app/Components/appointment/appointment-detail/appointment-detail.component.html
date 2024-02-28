@@ -1,0 +1,102 @@
+<div class="appointmentDetailCard">
+
+    <div>
+        <mat-card class="example-card appointmentDetailCardm">
+            <mat-card-header>
+              <mat-card-title>Appointment Detail</mat-card-title>
+              <mat-card-subtitle>Appointment No. {{appointmentDetail.appointmentId}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+        
+                <div>
+                    <table border="2px" >
+                        <tbody>
+        
+                            <tr>
+                                <td>Appointment Start Time</td>
+                                <td>{{appointmentDetail.starDateTime |date : 'MMM d, y, h:mm:ss a'}}</td>
+                            </tr>
+        
+                            <tr>
+                                <td>Appointment End Time</td>
+                                <td>{{appointmentDetail.endDateTime |date : 'MMM d, y, h:mm:ss a'}}</td>
+                            </tr>
+        
+                            <tr>
+                                <th colspan="2">Patient Details</th>
+                            </tr>
+        
+                            <tr>
+                                <td>Patient Name</td>
+                                <td>{{appointmentDetail.patient.name}}</td>
+                            </tr>
+        
+                            <tr>
+                                <td>Patient Address</td>
+                                <td>{{appointmentDetail.patient.address}}</td>
+                            </tr>
+        
+                            <tr>
+                                <td>Patient Phone</td>
+                                <td>{{appointmentDetail.patient.phone}}</td>
+                            </tr>
+        
+                            <tr>
+                                <th colspan="2">Physician Details</th>
+                            </tr>
+        
+                            <tr>
+                                <td>Physician Name</td>
+                                <td>{{appointmentDetail.physician.name}}</td>
+                            </tr>
+        
+                            <tr>
+                                <td>Physician Position</td>
+                                <td>{{appointmentDetail.physician.position}}</td>
+                            </tr>
+        
+                            <tr>
+                                <th colspan="2">Nurse Details</th>
+                            </tr>
+        
+                            <tr>
+                                <td>Nurse Name</td>
+                                <td>{{appointmentDetail.prepNurse.nurse.name}}</td>
+                            </tr>
+        
+                            <tr>
+                                <td>Nurse Position</td>
+                                <td>{{appointmentDetail.prepNurse.nurse.position}}</td>
+                            </tr>
+            
+                        </tbody>
+                    </table>
+                </div>
+              
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-raised-button color="accent" (click)="openDialog('Update')">Update</button> &nbsp;&nbsp;
+              <button mat-raised-button color="warn"(click)="deleteAppointment()">Delete</button>
+            </mat-card-actions>
+          </mat-card>
+    </div>
+
+    <div>
+        <div>
+            <h3><button mat-raised-button color="primary" (click)="AddPrescription('Add')" *ngIf="!prescription">Add prescription</button></h3>
+            <div style="width: 400px;" *ngIf="prescription">
+                <h2>Prescriptions</h2>
+                <mat-card class="appointmentDetailCardm" >
+                    <mat-card-content>
+                        <p><b>Medicine name:</b> {{prescription.medication.name}}</p>
+                        <p><b>Medicine brand name:</b> {{prescription.medication.brand}}</p>
+                        <p><b>Description:</b> {{prescription.medication.description}}</p>
+                        <p><b>Dose:</b> {{prescription.dose}}</p>
+                    </mat-card-content>
+                    <mat-card-actions><button mat-raised-button color="accent" (click)="AddPrescription('Update')">Update</button> &nbsp; &nbsp;<button mat-raised-button color="warn" (click)="deletePrescription()">Delete</button></mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+
+</div>
