@@ -9,17 +9,17 @@
             <mat-card-content>
         
                 <div>
-                    <table border="2px" >
+                    <!-- <table border="2px" >
                         <tbody>
         
                             <tr>
-                                <td>Appointment Start Time</td>
-                                <td>{{appointmentDetail.starDateTime |date : 'MMM d, y, h:mm:ss a'}}</td>
+                                <td >Appointment Start Time</td>
+                                <td >{{appointmentDetail.starDateTime |date : 'MMM d, y, h:mm:ss a'}}</td>
                             </tr>
         
                             <tr>
-                                <td>Appointment End Time</td>
-                                <td>{{appointmentDetail.endDateTime |date : 'MMM d, y, h:mm:ss a'}}</td>
+                                <td >Appointment End Time</td>
+                                <td >{{appointmentDetail.endDateTime |date : 'MMM d, y, h:mm:ss a'}}</td>
                             </tr>
         
                             <tr>
@@ -27,18 +27,18 @@
                             </tr>
         
                             <tr>
-                                <td>Patient Name</td>
-                                <td>{{appointmentDetail.patient.name}}</td>
+                                <td >Patient Name</td>
+                                <td >{{appointmentDetail.patient.name}}</td>
                             </tr>
         
                             <tr>
-                                <td>Patient Address</td>
-                                <td>{{appointmentDetail.patient.address}}</td>
+                                <td >Patient Address</td>
+                                <td >{{appointmentDetail.patient.address}}</td>
                             </tr>
         
                             <tr>
-                                <td>Patient Phone</td>
-                                <td>{{appointmentDetail.patient.phone}}</td>
+                                <td >Patient Phone</td>
+                                <td >{{appointmentDetail.patient.phone}}</td>
                             </tr>
         
                             <tr>
@@ -46,13 +46,13 @@
                             </tr>
         
                             <tr>
-                                <td>Physician Name</td>
-                                <td>{{appointmentDetail.physician.name}}</td>
+                                <td >Physician Name</td>
+                                <td >{{appointmentDetail.physician.name}}</td>
                             </tr>
         
                             <tr>
-                                <td>Physician Position</td>
-                                <td>{{appointmentDetail.physician.position}}</td>
+                                <td >Physician Position</td>
+                                <td >{{appointmentDetail.physician.position}}</td>
                             </tr>
         
                             <tr>
@@ -60,17 +60,38 @@
                             </tr>
         
                             <tr>
-                                <td>Nurse Name</td>
-                                <td>{{appointmentDetail.prepNurse.nurse.name}}</td>
+                                <td >Nurse Name</td>
+                                <td >{{appointmentDetail.prepNurse.nurse.name}}</td>
                             </tr>
         
                             <tr>
-                                <td>Nurse Position</td>
-                                <td>{{appointmentDetail.prepNurse.nurse.position}}</td>
+                                <td >Nurse Position</td>
+                                <td >{{appointmentDetail.prepNurse.nurse.position}}</td>
                             </tr>
             
                         </tbody>
-                    </table>
+                    </table> -->
+
+                    <table style="margin: 15px 0px;" mat-table [dataSource]="appointmentTableData" class="mat-elevation-z8">
+                        <!-- Item Column -->
+                        <ng-container matColumnDef="item">
+                          <th mat-header-cell *matHeaderCellDef> Name </th>
+                          <td mat-cell *matCellDef="let transaction"> {{transaction.item}} </td>
+              
+                        </ng-container>
+                      
+                        <!-- Cost Column -->
+                        <ng-container matColumnDef="value">
+                          <th mat-header-cell *matHeaderCellDef> Information </th>
+                          <td mat-cell *matCellDef="let transaction"> {{transaction.value}} </td>
+                        
+                        </ng-container>
+                      
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                      
+                      </table>
+                 
                 </div>
               
             </mat-card-content>

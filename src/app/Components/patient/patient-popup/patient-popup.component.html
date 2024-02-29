@@ -25,6 +25,6 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="updatePatient()">{{this.data.method}} Patient</button>
+  <button mat-button [mat-dialog-close]="true" [disabled]="patientForm.invalid" cdkFocusInitial (click)="updatePatient()">{{this.data.method}} Patient</button>
 </mat-dialog-actions>
 

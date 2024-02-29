@@ -3,8 +3,16 @@
     <div>
       <h2>Available Nurse</h2>
     </div>
-    <div>
-        <button style="margin: 10px;" mat-raised-button color="primary" (click)="addNurse()">Add</button>
+    <div style="display: flex; justify-content: space-between;">
+      <div>
+          <button style="margin: 10px;" mat-raised-button color="primary" (click)="addNurse()">Add</button>
+      </div>
+  
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Harvey" #input>
+      </mat-form-field>
+
     </div>
 
     <div>
@@ -34,7 +42,12 @@
           
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
           </table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 15]" aria-label="Select page of nurse"></mat-paginator>
     </div>
 
 

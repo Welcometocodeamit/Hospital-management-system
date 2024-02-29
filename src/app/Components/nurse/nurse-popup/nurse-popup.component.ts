@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiserviceService } from 'src/app/Services/apiservice.service';
@@ -20,9 +20,9 @@ export class NursePopupComponent {
   ngOnInit(): void {
     this.nurseForm = this.formBuilder.group({
       nurseId:[this.data.nurseData.nurseId, ],
-      name:[this.data.nurseData.name ,],
-      position: [this.data.nurseData.position ,],
-      registered: [this.data.nurseData.registered ,]
+      name:[this.data.nurseData.name , Validators.required],
+      position: [this.data.nurseData.position , Validators.required],
+      registered: [this.data.nurseData.registered , Validators.required]
     });
   }
 

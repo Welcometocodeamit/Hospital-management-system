@@ -21,7 +21,6 @@ export class HttpInterceptorInterceptor implements HttpInterceptor {
       headers: request.headers.set('Authorization', `bearer ${this.token}`).set('Content-Type', 'application/json'),
     }); 
     this.spinner.show();
-    console.log('show')
     return next.handle(modifiedRequest).pipe(
       catchError((error: any) => {
         this.spinner.hide();
@@ -29,7 +28,6 @@ export class HttpInterceptorInterceptor implements HttpInterceptor {
       }),
       finalize(() => {
         this.spinner.hide();
-        console.log('hide')
         // console.log("res")
       })
     );

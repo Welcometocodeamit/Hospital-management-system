@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiserviceService } from 'src/app/Services/apiservice.service';
@@ -16,13 +16,15 @@ export class OnCallDialogComponent {
   onCallForm:FormGroup
   blocks
   nurse
+  today = new Date(); 
+
   ngOnInit(): void {
     this.onCallForm = this.formBuilder.group({
       onCallId:[this.data.onCall.onCallId, ],
-      nurseId:[this.data.onCall.nurse.nurseId ,],
-      blockId: [this.data.onCall.block.blockId,],
-      onCallStart: [this.data.onCall.onCallStart ,],
-      onCallEnd: [this.data.onCall.onCallEnd ,]
+      nurseId:[this.data.onCall.nurse.nurseId , Validators.required],
+      blockId: [this.data.onCall.block.blockId, Validators.required],
+      onCallStart: [this.data.onCall.onCallStart , Validators.required],
+      onCallEnd: [this.data.onCall.onCallEnd , Validators.required]
     });
 
     this.http.getBlocks().subscribe((data)=>{

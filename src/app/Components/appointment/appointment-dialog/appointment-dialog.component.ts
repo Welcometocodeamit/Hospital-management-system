@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiserviceService } from 'src/app/Services/apiservice.service';
@@ -12,10 +12,11 @@ import { HttpService } from 'src/app/Services/http.service';
 })
 export class AppointmentDialogComponent {
 
-  constructor(private service:ApiserviceService, private formBuilder:FormBuilder, private router:Router, @Inject(MAT_DIALOG_DATA) public data: any, private http:HttpService, private activeRoute:ActivatedRoute){}
+  constructor(private service:ApiserviceService, private formBuilder:FormBuilder, private router:Router, @Inject(MAT_DIALOG_DATA) public data: any, private http:HttpService, private activeRoute:ActivatedRoute){
+ 
+  }
 
-  
-  
+  today = new Date(); 
 
   patients
   physicians
@@ -37,11 +38,11 @@ export class AppointmentDialogComponent {
 
     this.appointmentForm = this.formBuilder.group({
       appointmentId:[this.data.appointment.appointmentId, ],
-      patientId:[this.data.appointment.patient.patientId ,],
-      physicianId: [this.data.appointment.physician.physicianId ,],
-      onCallId: [this.data.appointment.prepNurse.onCallId ,],
-      startDateTime:[this.data.appointment.starDateTime,],
-      endDateTime:[this.data.appointment.endDateTime,]
+      patientId:[this.data.appointment.patient.patientId , Validators.required],
+      physicianId: [this.data.appointment.physician.physicianId , Validators.required],
+      onCallId: [this.data.appointment.prepNurse.onCallId , Validators.required],
+      startDateTime:[this.data.appointment.starDateTime, Validators.required],
+      endDateTime:[this.data.appointment.endDateTime, Validators.required]
     });
   }
 

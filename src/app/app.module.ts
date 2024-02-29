@@ -37,11 +37,14 @@ import { OnCallComponent } from './Components/nurse/on-call/on-call.component';
 import { OnCallDialogComponent } from './Components/nurse/on-call/on-call-dialog/on-call-dialog.component';
 import { AddCertificateComponent } from './Components/physician/physician-detail/add-certificate/add-certificate.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { HomeComponent } from './Components/home/home.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 const routes: Routes = [
   {path:'Physician', component:PhysicianComponent },
+  {path:'', component:HomeComponent},
   {path:'Physician/:physicianId', component:PhysicianDetailComponent },
-  {path:'Treatment', component:TreatmentComponent  },
+  {path:'Home', component:HomeComponent  },
   {path:'Appointment', component:AppointmentComponent },
   {path:'Appointment/:appointmentId', component:AppointmentDetailComponent },
   {path:'Nurse', component:NurseComponent },
@@ -69,7 +72,8 @@ const routes: Routes = [
     PrescriptionComponent,
     OnCallComponent,
     OnCallDialogComponent,
-    AddCertificateComponent
+    AddCertificateComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -91,6 +95,7 @@ const routes: Routes = [
     MatNativeDateModule,
     MatOptionModule,
     NgxSpinnerModule,
+    MatPaginatorModule,
     RouterModule.forRoot(routes),
 
   ],

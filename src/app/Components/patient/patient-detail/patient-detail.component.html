@@ -1,7 +1,7 @@
 <div class="patientDetail">
 
     <div>
-        <h2>Undergoing Treatments</h2>
+        <h2>Undergoing Treatment</h2>
     </div>
 
     <div  style="display: flex; justify-content: space-evenly; width: 100%;">
@@ -21,7 +21,29 @@
               </mat-card>
         </div>
         <div *ngIf="patientDetail!=null">
-            <table border="2px" >
+
+            <table style="margin: 15px 0px; width: 900px;" mat-table [dataSource]="patientTableData" class="mat-elevation-z8">
+                <!-- Item Column -->
+                <ng-container matColumnDef="item">
+                  <th mat-header-cell *matHeaderCellDef> Name </th>
+                  <td mat-cell *matCellDef="let transaction"> {{transaction.item}} </td>
+      
+                </ng-container>
+              
+                <!-- Cost Column -->
+                <ng-container matColumnDef="value">
+                  <th mat-header-cell *matHeaderCellDef> Information </th>
+                  <td mat-cell *matCellDef="let transaction"> {{transaction.value}} </td>
+                
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              
+              </table>
+           
+            <!-- <table border="2px" >
+
                 <thead>
                     <tr>
                         <th colspan="2">Treatment details</th>
@@ -101,7 +123,7 @@
                         <td>{{patientDetail.stay.room.block.blockCode}}</td>
                     </tr>
                 </tbody>
-            </table>
+            </table> -->
         </div>
     </div>
 

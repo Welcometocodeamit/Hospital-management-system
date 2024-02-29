@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiserviceService } from 'src/app/Services/apiservice.service';
@@ -30,10 +30,10 @@ export class PrescriptionComponent {
       id:[this.data.prescription.prescribedId],
       physician:[this.data.prescription.physician.physicianId],
       patient: [this.data.prescription.patientId],
-      medication: [this.data.prescription.medication.medicationId],
+      medication: [this.data.prescription.medication.medicationId, Validators.required],
       date:[this.date],
       appointment:[this.data.appointmentId],
-      dose:[this.data.prescription.dose]
+      dose:[this.data.prescription.dose, Validators.required]
     });
   }
 

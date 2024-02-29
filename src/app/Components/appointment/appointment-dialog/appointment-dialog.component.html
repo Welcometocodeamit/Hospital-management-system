@@ -36,7 +36,7 @@
 
             <mat-form-field>
                 <mat-label>Select Appointment Date</mat-label>
-                <mat-date-range-input [rangePicker]="picker">
+                <mat-date-range-input [rangePicker]="picker" [min]="today">
                   <input formControlName="startDateTime" matStartDate placeholder="Start date" >
                   <input formControlName="endDateTime" matEndDate placeholder="End date" >
                 </mat-date-range-input>
@@ -52,6 +52,6 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="update()">{{this.data.method}} Appointment</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial [disabled]="appointmentForm.invalid" (click)="update()">{{this.data.method}} Appointment</button>
 </mat-dialog-actions>
 </div>

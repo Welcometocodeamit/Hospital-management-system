@@ -18,11 +18,14 @@ export class PatientDetailComponent {
     this.particularPatient=this.service.patient
     this.http.getPatientTreatmentDetails(this.activeRoute.snapshot.params['patientId']).subscribe((data)=>{
       this.patientDetail=data
+      this.setPatientTableData()
     })
   }
 
-  patientDetail=null
+  patientDetail:any=null
   particularPatient
+  displayedColumns: string[] = ['item', 'value'];
+  patientTableData
 
   openDialog() {
     const dialogRef = this.dialog.open(PatientPopupComponent,
@@ -45,6 +48,23 @@ export class PatientDetailComponent {
     this.http.deletePatient(this.particularPatient).subscribe((data)=>{
       this.router.navigate([`/Patient`])
     })
+  }
+
+  setPatientTableData(){
+    this.patientTableData = [
+      {item: 'Treatment Name', value: this.patientDetail.procedure.name},
+      {item: 'Treatment Cost', value: this.patientDetail.procedure.cost},
+      {item: 'Physician Name', value: this.patientDetail.physician.name},
+      {item: 'Physician Position', value: this.patientDetail.physician.position},
+      {item: 'Nurse Name', value: this.patientDetail.nurse.name},
+      {item: 'Nurse Position', value: this.patientDetail.nurse.position},
+      {item: 'Stay Start Date', value: this.patientDetail.stay.startDateTime},
+      {item: 'Stay End Date', value: this.patientDetail.stay.endDateTime},
+      {item: 'Room no.', value: this.patientDetail.stay.room.roomNumber},
+      {item: 'Room Type', value: this.patientDetail.stay.room.roomType},
+      {item: 'Block Floor', value: this.patientDetail.stay.room.block.blockFloor},
+      {item: 'Block Code', value: this.patientDetail.stay.room.block.blockCode},
+    ];
   }
 
 

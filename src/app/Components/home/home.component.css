@@ -1,0 +1,39 @@
+.homeComponent{
+    margin: 40px ;
+    display: flex;
+    justify-content: center;
+}
+
+.informationCardsDiv{
+    display: flex;
+    justify-content: space-evenly;
+    width: 70%;
+}
+
+.card{
+    width: 250px;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 5px rgba(92, 92, 92, 0.2);
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.card:hover{
+    width: 300px;
+    height: 350px;
+    opacity: 1;
+    cursor: pointer;
+}
+
+#phy{
+    background-color: rgb(166, 223, 161);
+}
+
+#pat{
+    background-color: rgb(232, 232, 180);
+}
+
+#nur{
+    background-color: rgb(180, 223, 232);
+}

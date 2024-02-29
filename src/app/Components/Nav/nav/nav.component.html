@@ -1,14 +1,14 @@
 <mat-toolbar  color="primary" class="nav">   
 
     <div>
-        <p>HMS</p>
+        <p>Fortis</p>
     </div>
   
     <div>
+        <button mat-button routerLink="Home" routerLinkActive="active" [routerLinkActiveOptions]="{exact:false}"><a>Home</a></button>
         <button mat-button routerLink="Physician" routerLinkActive="active" [routerLinkActiveOptions]="{exact:false}"><a>Physician</a></button>
         <button mat-button routerLink="Patient" routerLinkActive="active" [routerLinkActiveOptions]="{exact:false}"><a>Patient</a></button>
         <button mat-button routerLink="Nurse" routerLinkActive="active" [routerLinkActiveOptions]="{exact:false}"><a>Nurse</a></button>
-        <!-- <button mat-button routerLink="Trainings" routerLinkActive="active" [routerLinkActiveOptions]="{exact:false}"><a>Training</a></button> -->
         <button mat-button routerLink="Appointment" routerLinkActive="active" [routerLinkActiveOptions]="{exact:false}"><a>Appointment</a></button>
     </div>
 

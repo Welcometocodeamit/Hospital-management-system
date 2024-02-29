@@ -1,0 +1,42 @@
+<div class="homeComponent">
+    <div class="informationCardsDiv">
+
+        <div >
+
+            <mat-card class="card" id="phy" (click)="openPhy()">
+                <mat-card-header><h1>{{physician}}</h1></mat-card-header>
+                <mat-card-content>Physicians</mat-card-content>
+                <div style="display: flex; justify-content: center; align-items: center; margin: 20px;">
+                    <img height="auto" width="150px" mat-card-image src="../../../assets/doctor.png">
+                </div>
+            </mat-card>
+
+        </div>
+
+        <div >
+
+            <mat-card class="card" id='pat' (click)="openPat()">
+                <mat-card-header><h1>{{patient}}</h1></mat-card-header>
+                <mat-card-content>Patients</mat-card-content>
+                <div style="display: flex; justify-content: center; align-items: center; margin: 20px;">
+                    <img height="auto" width="150px" mat-card-image src="../../../assets/patient.png">
+                </div>
+            </mat-card>
+
+        </div>
+
+        <div >
+
+            <mat-card class="card" id="nur" (click)="openNur()">
+                <mat-card-header><h1>{{nurse}}</h1></mat-card-header>
+                <mat-card-content>Nurse</mat-card-content>
+                <div style="display: flex; justify-content: center; align-items: center; margin: 20px;">
+                    <img height="auto" width="150px" mat-card-image src="../../../assets/nurse.png">
+                </div>
+                    
+            </mat-card>
+
+        </div>
+
+    </div>
+</div>

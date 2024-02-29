@@ -5,6 +5,7 @@ import { HttpService } from 'src/app/Services/http.service';
 import { AppointmentDialogComponent } from '../appointment-dialog/appointment-dialog.component';
 import { ApiserviceService } from 'src/app/Services/apiservice.service';
 import { PrescriptionComponent } from '../prescription/prescription.component';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-appointment-detail',
@@ -14,11 +15,14 @@ import { PrescriptionComponent } from '../prescription/prescription.component';
 export class AppointmentDetailComponent {
 
   constructor(private activeRoute:ActivatedRoute, private http:HttpService, public dialog: MatDialog, private route:Router, private service:ApiserviceService){}
-  appointmentDetail
+  appointmentDetail:any=[]
   prescription
+  displayedColumns: string[] = ['item', 'value'];
+  dataSource
   ngOnInit(){
-    this.http.getAppointmentById(this.activeRoute.snapshot.params['appointmentId']).subscribe((data)=>{
+    this.http.getAppointmentById(this.activeRoute.snapshot.params['appointmentId']).subscribe((data:any)=>{
       this.appointmentDetail=data
+      this.setAppointMentData()
       this.http.getPriscriptionByAppointmentId(this.appointmentDetail.appointmentId).subscribe((data)=>{
         this.prescription=data
       })
@@ -102,6 +106,25 @@ export class AppointmentDetailComponent {
       this.service.appointmentSubject.next(data)
      })
     })
-  }}
+  }
+
+  appointmentTableData
+
+  setAppointMentData(){
+    this.appointmentTableData = [
+      {item: 'Appointment Start Time', value: this.appointmentDetail.starDateTime},
+      {item: 'Appointment End Time', value: this.appointmentDetail.endDateTime},
+      {item: 'Patient Name', value: this.appointmentDetail.patient.name},
+      {item: 'Patient Address', value: this.appointmentDetail.patient.address},
+      {item: 'Patient Phone', value: this.appointmentDetail.patient.phone},
+      {item: 'Physician Name', value: this.appointmentDetail.physician.name},
+      {item: 'Physician Position', value: this.appointmentDetail.physician.position},
+      {item: 'Nurse Name', value: this.appointmentDetail.prepNurse.nurse.name},
+      {item: 'Nurse Position', value: this.appointmentDetail.prepNurse.nurse.position}
+    ];
+  }
+  
+
+}
 
   

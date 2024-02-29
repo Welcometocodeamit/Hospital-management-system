@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BackendPhysician } from 'src/app/Models/UpdatePhysician';
@@ -20,8 +20,8 @@ export class UpdatePhysicianComponent {
   ngOnInit(): void {
     this.updatePhysicianForm = this.formBuilder.group({
       physicianId:[this.data.physicianId, ],
-      name:[this.data.name ,],
-      position: [this.data.position ,]
+      name:[this.data.name, Validators.required],
+      position: [this.data.position, Validators.required]
     });
   }
 

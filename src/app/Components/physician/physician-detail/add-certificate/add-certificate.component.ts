@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiserviceService } from 'src/app/Services/apiservice.service';
@@ -16,7 +16,7 @@ export class AddCertificateComponent {
 
   certificateForm:FormGroup
   treatments
-
+  today = new Date(); 
   ngOnInit(): void {
     this.http.getTreatments().subscribe((data)=>{
       this.treatments=data
@@ -24,9 +24,9 @@ export class AddCertificateComponent {
     this.certificateForm = this.formBuilder.group({
       id:[0],
       physician:[this.data.physicianId],
-      treatment:[],
-      certificationDate: [],
-      certificationExpires: []
+      treatment:[,Validators.required],
+      certificationDate: [,Validators.required],
+      certificationExpires: [,Validators.required]
     });
   }
 

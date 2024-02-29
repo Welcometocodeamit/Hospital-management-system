@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ApiserviceService } from 'src/app/Services/apiservice.service';
@@ -19,9 +19,9 @@ export class PatientPopupComponent {
   ngOnInit(): void {
     this.patientForm = this.formBuilder.group({
       patientId:[this.data.patientId, ],
-      name:[this.data.name ,],
-      address: [this.data.address ,],
-      phone: [this.data.phone ,]
+      name:[this.data.name , Validators.required],
+      address: [this.data.address , Validators.required],
+      phone: [this.data.phone , [Validators.required, Validators.minLength(10)]]
     });
   }
 

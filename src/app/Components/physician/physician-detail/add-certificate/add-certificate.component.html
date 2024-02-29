@@ -2,7 +2,7 @@
 <mat-dialog-content class="mat-typography">
 
     <div>
-        <form  id="certificateForm" [formGroup]="certificateForm" class="reg">
+        <form style="display: flex; flex-direction: column;"  id="certificateForm" [formGroup]="certificateForm" class="reg">
   
             <mat-form-field>
                 <mat-label>Procedure</mat-label>
@@ -15,7 +15,7 @@
 
             <mat-form-field>
                 <mat-label>Select Certification Date</mat-label>
-                <mat-date-range-input [rangePicker]="picker">
+                <mat-date-range-input [min]="today" [rangePicker]="picker">
                   <input formControlName="certificationDate" matStartDate placeholder="Start date" >
                   <input formControlName="certificationExpires" matEndDate placeholder="End date" >
                 </mat-date-range-input>
@@ -30,6 +30,6 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="create()">Issue</button>
+  <button mat-button [mat-dialog-close]="true" [disabled]="certificateForm.invalid" cdkFocusInitial (click)="create()">Issue</button>
 </mat-dialog-actions>
 
