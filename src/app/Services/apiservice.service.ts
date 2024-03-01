@@ -11,6 +11,7 @@ export class ApiserviceService {
   physicianSubject= new Subject()
   physicianDetailSubject=new Subject()
   patientSubjet=new Subject()
+  patientDetailSubject=new Subject()
   onCallSubject=new Subject()
   nurseSubject=new Subject()
   appointmentHomeSubject=new Subject()

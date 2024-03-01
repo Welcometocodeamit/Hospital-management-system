@@ -6,6 +6,7 @@ import { HttpService } from 'src/app/Services/http.service';
 import { NursePopupComponent } from './nurse-popup/nurse-popup.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 
 @Component({
   selector: 'app-nurse',
@@ -43,16 +44,34 @@ export class NurseComponent {
   }
 
   deleteNurse(nurse){
-    this.http.deletNurse(nurse).subscribe((data)=>{
-      this.http.getNurse().subscribe((data)=>{
-        this.service.nurseSubject.next(data)
-      })
-    })
+    this.openDeleteNurseDialog(nurse)
+  }
+
+  openDeleteNurseDialog(nurse) {
+    const dialogRef = this.dialog.open(DeletePopupComponent,
+      {data:{
+        head:'Nurse',
+        content:nurse.name
+      }});
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'delete') {
+        this.http.deletNurse(nurse).subscribe((data)=>{
+          this.http.getNurse().subscribe((data)=>{
+            this.service.nurseSubject.next(data)
+          })
+        })
+    } 
+    });
   }
 
   addNurse(){
     let nurse={nurseId:0, name:'', position:'', registered:true }
     this.openDialog(nurse, "Add")
+  }
+
+  onBlock(){
+    this.router.navigate(['/Service'])
   }
 
   openDialog(nurse, action) {

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from 'src/app/Services/http.service';
 import { PatientPopupComponent } from '../patient-popup/patient-popup.component';
 import { ApiserviceService } from 'src/app/Services/apiservice.service';
+import { DeletePopupComponent } from '../../delete-popup/delete-popup.component';
 
 @Component({
   selector: 'app-patient-detail',
@@ -17,6 +18,11 @@ export class PatientDetailComponent {
   ngOnInit(){
     this.particularPatient=this.service.patient
     this.http.getPatientTreatmentDetails(this.activeRoute.snapshot.params['patientId']).subscribe((data)=>{
+      this.patientDetail=data
+      this.setPatientTableData()
+    })
+
+    this.service.patientDetailSubject.subscribe((data)=>{
       this.patientDetail=data
       this.setPatientTableData()
     })
@@ -45,9 +51,7 @@ export class PatientDetailComponent {
   }
 
   deletePatient(){
-    this.http.deletePatient(this.particularPatient).subscribe((data)=>{
-      this.router.navigate([`/Patient`])
-    })
+    this.openDeletePatientDialog(this.particularPatient.name)
   }
 
   setPatientTableData(){
@@ -65,6 +69,23 @@ export class PatientDetailComponent {
       {item: 'Block Floor', value: this.patientDetail.stay.room.block.blockFloor},
       {item: 'Block Code', value: this.patientDetail.stay.room.block.blockCode},
     ];
+  }
+
+
+  openDeletePatientDialog(content) {
+    const dialogRef = this.dialog.open(DeletePopupComponent,
+      {data:{
+        head:'Patient',
+        content:content
+      }});
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'delete') {
+        this.http.deletePatient(this.particularPatient).subscribe((data)=>{
+          this.router.navigate([`/Patient`])
+        })
+    } 
+    });
   }
 
 

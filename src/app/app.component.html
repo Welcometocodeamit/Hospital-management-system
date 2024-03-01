@@ -1,5 +1,5 @@
 <app-nav></app-nav>
-<div style="margin: 20px 50px -20px 50px;">
+<div *ngIf="status" style="margin: 20px 50px -20px 50px;">
     <button style="border: none; background-color: white;" (click)="goBack()"><img src="../assets/back-button.png" height="50px" alt="backBtn"></button>
 </div>
 <router-outlet></router-outlet>

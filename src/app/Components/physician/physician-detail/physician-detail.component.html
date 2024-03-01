@@ -1,60 +1,78 @@
-<div class="physicianDetailFooter">
-    <div class="physicianDetailButton">
-        <button mat-raised-button color="accent" (click)="openDialog()">Edit</button>
-        <button mat-raised-button color="warn" (click)="deletePhysician()">Delete</button>
-    </div>
-</div>
-
-<div class="physicianDetail">
-    <mat-card class="physicianDetailHead">
-        <mat-card-header style="display: flex; justify-content: center; margin: 10px;"><b style="font-size: x-large; background-color: rgb(228, 226, 226);">{{physicianDetail.name}}</b></mat-card-header>
-        <mat-card-content>{{physicianDetail.position}}</mat-card-content>
-    </mat-card>
-
-    <div class="physicianDetailBody">
-
-        <div class="physicianDetailCertifications">
-
-            <h2>Certifications</h2>
-
-            <div><button mat-raised-button color="primary" (click)="openDialogCertificate()">Issue Certificate</button></div><br>
-
-            <mat-card class="example-card certificateCard" style="margin: 15px;" *ngFor="let certificate of physicianDetail.trainedIn">
-                <mat-card-header>
-                  <mat-card-title-group>
-                    <mat-card-title>{{certificate.treatment.name}}</mat-card-title>
-                    <mat-card-subtitle>Certificate No. {{certificate.treatment.procedureId}}</mat-card-subtitle>
-                  </mat-card-title-group>
-                </mat-card-header>
-                <mat-card-content>
-                    Certification Date: {{certificate.certificationDate |date}} <br>
-                    Expire Date: {{certificate.certificationExpires | date}}
-                </mat-card-content>
-                <mat-card-footer style="display: flex; justify-content: flex-end; margin: 10px;"><button mat-raised-button color="warn" (click)="delete(certificate)">Delete</button></mat-card-footer>
-            </mat-card>
-
+<div class="mkk">
+    <div class="physicianDetailFooter">
+        <div class="physicianDetailButton">
+            <button mat-raised-button color="accent" (click)="openDialog()">Edit</button>
+            <button mat-raised-button color="warn" (click)="deletePhysician()">Delete</button>
         </div>
-
-        <div class="physicianDetailAppointments">
-
-            <h2>Appointments</h2>
+    </div>
+    
+    <div class="physicianDetail">
+    
+        <div>
+            <mat-card class="physicianDetailHead">
+                <mat-card-header class="pdivh"><b style="font-size: x-large;">
+                    {{physicianDetail.name}}
+                </b></mat-card-header>
+                <mat-card-content>{{physicianDetail.position}}</mat-card-content>
+            </mat-card>
+    
+        </div>
+        
+        <div class="physicianDetailBody">
             
-            <mat-card class="example-card appointmentCard" *ngFor="let appointment of physicianDetail.appointments">
-                <mat-card-header>
-                  <mat-card-title-group>
-                    <mat-card-title>Patient name: {{appointment.patient.name}}</mat-card-title>
-                  </mat-card-title-group>
-                </mat-card-header>
-                <mat-card-content>
-                    Appointment Start Time: {{appointment.starDateTime |date : 'MMM d, y, h:mm:ss a'}} <br>
-                    Appointment End Time: {{appointment.endDateTime | date : 'MMM d, y, h:mm:ss a'}}
-                </mat-card-content>
-            </mat-card>
-
-
+            <div class="physicianDetailCertifications">
+    
+                <div class="cert">
+                    <h2>Certifications</h2> 
+                </div>
+    
+                <div><button mat-raised-button color="primary" (click)="openDialogCertificate()">Issue Certificate</button></div><br>
+    
+                <mat-card class="example-card certificateCard" style="margin: 15px;" [matBadge]="i+1" matBadgeColor="accent" matBadgePosition="before" matBadgeSize="medium" *ngFor="let certificate of physicianDetail.trainedIn; let i=index;" >
+                    <mat-card-header>
+                      <mat-card-title-group class="carddiv">
+                        
+                            <mat-card-title>{{certificate.treatment.name}}</mat-card-title>
+                     
+                        <mat-card-subtitle></mat-card-subtitle>
+                      </mat-card-title-group>
+                    </mat-card-header>
+                    <mat-card-content>
+                        Certificate No. {{certificate.treatment.procedureId}} <br>
+                        Certification Date: {{certificate.certificationDate |date}} <br>
+                        Expire Date: {{certificate.certificationExpires | date}}
+                    </mat-card-content>
+                    <mat-card-footer style="display: flex; justify-content: flex-end; margin: 10px;"><button mat-raised-button color="warn" (click)="delete(certificate)">Delete</button></mat-card-footer>
+                </mat-card>
+    
+            </div>
+    
+            <div class="physicianDetailAppointments">
+    
+                <div class="app">
+                    <h2>Appointments</h2>
+                </div>
+                
+                
+                <mat-card class="example-card appointmentCard" [matBadge]="i+1" matBadgeColor="accent" matBadgePosition="before" matBadgeSize="medium"  *ngFor="let appointment of physicianDetail.appointments; let i=index">
+                    <mat-card-header>
+                      <mat-card-title-group>
+                        <mat-card-title>Patient name: {{appointment.patient.name}}</mat-card-title>
+                      </mat-card-title-group>
+                    </mat-card-header>
+                    <mat-card-content>
+                        Appointment Start Time: {{appointment.starDateTime |date : 'MMM d, y, h:mm:ss a'}} <br>
+                        Appointment End Time: {{appointment.endDateTime | date : 'MMM d, y, h:mm:ss a'}}
+                    </mat-card-content>
+                    <br>
+                </mat-card>
+    
+    
+            </div>
+    
         </div>
-
+    
+       
     </div>
 
-   
 </div>

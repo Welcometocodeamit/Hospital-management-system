@@ -1,11 +1,10 @@
 <div class="patientDetail">
 
-    <div>
-        <h2>Undergoing Treatment</h2>
-    </div>
+    
 
     <div  style="display: flex; justify-content: space-evenly; width: 100%;">
-        <div >
+        <div class="ptcard">
+            <h2>Patient detail</h2>
             <mat-card class="patientCard">
                 <mat-card-header>
                   <mat-card-title>{{particularPatient.name}}</mat-card-title>
@@ -21,8 +20,11 @@
               </mat-card>
         </div>
         <div *ngIf="patientDetail!=null">
+            <div>
+                <h2>Undergoing Treatment</h2>
+            </div>
 
-            <table style="margin: 15px 0px; width: 900px;" mat-table [dataSource]="patientTableData" class="mat-elevation-z8">
+            <table style=" width: 900px;" mat-table [dataSource]="patientTableData" class="mat-elevation-z8">
                 <!-- Item Column -->
                 <ng-container matColumnDef="item">
                   <th mat-header-cell *matHeaderCellDef> Name </th>

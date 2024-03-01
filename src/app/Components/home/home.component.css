@@ -1,7 +1,11 @@
 .homeComponent{
     margin: 40px ;
+    padding-top: 40px;
     display: flex;
     justify-content: center;
+    align-items: center;
+    /* background-color: rgb(174, 145, 145);
+    height: 70%; */
 }
 
 .informationCardsDiv{

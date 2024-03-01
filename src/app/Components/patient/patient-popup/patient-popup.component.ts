@@ -28,7 +28,10 @@ export class PatientPopupComponent {
   updatePatient(){
     if(this.data.method=="Update"){
       this.http.updatePatient(this.patientForm.value).subscribe((data)=>{
-        this.router.navigate([`Patient/`+this.data.patientId])
+      //  this.http.getPatientTreatmentDetails(this.patientForm.value.patientId).subscribe((data)=>{
+      //   this.service.patientDetailSubject.next(data)
+      //  })
+        // this.router.navigate([`Patient/`+this.data.patientId])
       })
     }else if(this.data.method=="Add"){
       this.http.addPatient(this.patientForm.value).subscribe((data)=>{

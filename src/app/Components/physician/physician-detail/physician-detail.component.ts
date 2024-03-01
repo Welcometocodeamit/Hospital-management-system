@@ -7,6 +7,7 @@ import { UpdatePhysicianComponent } from './update-physician/update-physician.co
 import { BackendPhysician } from 'src/app/Models/UpdatePhysician';
 import { AddCertificateComponent } from './add-certificate/add-certificate.component';
 import { ApiserviceService } from 'src/app/Services/apiservice.service';
+import { DeletePopupComponent } from '../../delete-popup/delete-popup.component';
 
 @Component({
   selector: 'app-physician-detail',
@@ -55,20 +56,49 @@ export class PhysicianDetailComponent {
   }
 
   deletePhysician(){
-    
-    let deletePhysician:BackendPhysician={physicianId:this.physicianDetail.physicianId, name:this.physicianDetail.name, position:this.physicianDetail.position}
-    this.http.deletePhysician(deletePhysician).subscribe((data)=>{
-      this.route.navigate(['/Physician'])
-    })
+    let content=this.physicianDetail.name
+    this.openDeletePhysicianDialog(content)
   }
 
   delete(certificate){
-    let c={id:certificate.trainedInId, physicianId:certificate.physicianId, treatment:certificate.treatment.procedureId, certificationDate:certificate.certificationDate, certificationExpires:certificate.certificationExpires}
+    this.openDeleteCertificateDialog(certificate)
+  }
+
+
+  openDeleteCertificateDialog(certificate) {
+    const dialogRef = this.dialog.open(DeletePopupComponent,
+      {data:{
+        head:'Certificate',
+        content:certificate.treatment.name
+      }});
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'delete') {
+        let c={id:certificate.trainedInId, physicianId:certificate.physicianId, treatment:certificate.treatment.procedureId, certificationDate:certificate.certificationDate, certificationExpires:certificate.certificationExpires}
     this.http.deleteCertificate(c).subscribe((data)=>{
       this.http.getPhysicianById(this.physicianDetail.physicianId).subscribe((data)=>{
         this.service.physicianDetailSubject.next(data)
       })
     })
+    } 
+    });
+  }
+
+  openDeletePhysicianDialog(content) {
+    const dialogRef = this.dialog.open(DeletePopupComponent,
+      {data:{
+        head:'Physician',
+        content:content
+      }});
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'delete') {
+        let deletePhysician:BackendPhysician={physicianId:this.physicianDetail.physicianId, name:this.physicianDetail.name, position:this.physicianDetail.position}
+        this.http.deletePhysician(deletePhysician).subscribe((data)=>{
+          this.route.navigate(['/Physician'])
+        })
+    } 
+    });
   }
 
 }

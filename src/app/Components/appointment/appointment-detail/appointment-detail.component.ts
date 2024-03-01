@@ -6,6 +6,7 @@ import { AppointmentDialogComponent } from '../appointment-dialog/appointment-di
 import { ApiserviceService } from 'src/app/Services/apiservice.service';
 import { PrescriptionComponent } from '../prescription/prescription.component';
 import { MatTableDataSource } from '@angular/material/table';
+import { DeletePopupComponent } from '../../delete-popup/delete-popup.component';
 
 @Component({
   selector: 'app-appointment-detail',
@@ -48,16 +49,34 @@ export class AppointmentDetailComponent {
   }
 
   deleteAppointment(){
-    let appointment={appointmentId:this.appointmentDetail.appointmentId, 
-                      patientId:this.appointmentDetail.patient.patientId, 
-                      physicianId:this.appointmentDetail.physician.physicianId, 
-                      onCallId:this.appointmentDetail.prepNurse.onCallId, 
-                      startDateTime:this.appointmentDetail.startDateTime, 
-                      endDateTime:this.appointmentDetail.endDateTime}
-    this.http.deleteAppointment(appointment).subscribe((data)=>{
-      this.route.navigate(['/Appointment'])
-    })
+    this.openDeleteAppointmentDialog(`appointment for ${this.appointmentDetail.patient.name}`)
   }
+
+
+  openDeleteAppointmentDialog(content) {
+    const dialogRef = this.dialog.open(DeletePopupComponent,
+      {data:{
+        head:'Appointment',
+        content:content
+      }});
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'delete') {
+        let appointment={appointmentId:this.appointmentDetail.appointmentId, 
+          patientId:this.appointmentDetail.patient.patientId, 
+          physicianId:this.appointmentDetail.physician.physicianId, 
+          onCallId:this.appointmentDetail.prepNurse.onCallId, 
+          startDateTime:this.appointmentDetail.startDateTime, 
+          endDateTime:this.appointmentDetail.endDateTime}
+this.http.deleteAppointment(appointment).subscribe((data)=>{
+this.route.navigate(['/Appointment'])
+})
+    } 
+    });
+  }
+
+
+
 
   AddPrescription(action){
     let p
@@ -91,21 +110,36 @@ export class AppointmentDetailComponent {
   }
 
   deletePrescription(){
+    this.openDeletePreDialog(`prescription for ${this.prescription.medication.name}`)
+   
+  }
 
-    let pre={
-      id:this.prescription.prescribedId,
-      physician:this.prescription.physician.physicianId,
-      patient:this.prescription.patientId,
-      medication:this.prescription.medication.medicationId,
-      date:this.prescription.appointmentDate,
-      dose:this.prescription.dose
-    }
 
-    this.http.deletePrescription(pre).subscribe((data)=>{
-     this.http.getAppointmentById(this.appointmentDetail.appointmentId).subscribe((data)=>{
-      this.service.appointmentSubject.next(data)
-     })
-    })
+  openDeletePreDialog(element) {
+    const dialogRef = this.dialog.open(DeletePopupComponent,
+      {data:{
+        head:'Prescription',
+        content:element
+      }});
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'delete') {
+        let pre={
+          id:this.prescription.prescribedId,
+          physician:this.prescription.physician.physicianId,
+          patient:this.prescription.patientId,
+          medication:this.prescription.medication.medicationId,
+          date:this.prescription.appointmentDate,
+          dose:this.prescription.dose
+        }
+    
+        this.http.deletePrescription(pre).subscribe((data)=>{
+         this.http.getAppointmentById(this.appointmentDetail.appointmentId).subscribe((data)=>{
+          this.service.appointmentSubject.next(data)
+         })
+        })
+    } 
+    });
   }
 
   appointmentTableData

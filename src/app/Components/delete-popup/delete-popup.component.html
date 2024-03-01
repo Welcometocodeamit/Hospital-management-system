@@ -1,0 +1,12 @@
+<div class="dc" style="background-color: rgb(225, 84, 49); color: white;">
+
+    <h1 class="dc" mat-dialog-title>Delete {{data.head}}</h1>
+    <div class="dc" mat-dialog-content>
+      Would you like to delete {{data.content}}?
+    </div>
+    <div mat-dialog-actions>
+      <button class="dc" mat-button mat-dialog-close (click)="onNoClick()">No</button>
+      <button class="dc" mat-button mat-dialog-close cdkFocusInitial (click)="onDeleteClick()">Ok</button>
+    </div>
+</div>
+

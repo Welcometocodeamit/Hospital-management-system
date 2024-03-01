@@ -39,6 +39,9 @@ import { AddCertificateComponent } from './Components/physician/physician-detail
 import { NgxSpinnerModule } from "ngx-spinner";
 import { HomeComponent } from './Components/home/home.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatBadgeModule} from '@angular/material/badge';
+import { ToastrModule } from 'ngx-toastr';
+import { DeletePopupComponent } from './Components/delete-popup/delete-popup.component';
 
 const routes: Routes = [
   {path:'Physician', component:PhysicianComponent },
@@ -48,8 +51,10 @@ const routes: Routes = [
   {path:'Appointment', component:AppointmentComponent },
   {path:'Appointment/:appointmentId', component:AppointmentDetailComponent },
   {path:'Nurse', component:NurseComponent },
+  {path:'Service', component:OnCallComponent },
   {path:'Patient', component:PatientComponent },
   {path:'Patient/:patientId', component:PatientDetailComponent },
+  {path:'**' , redirectTo:'Home'},
 ];
 
 
@@ -73,7 +78,8 @@ const routes: Routes = [
     OnCallComponent,
     OnCallDialogComponent,
     AddCertificateComponent,
-    HomeComponent
+    HomeComponent,
+    DeletePopupComponent
   ],
   imports: [
     BrowserModule,
@@ -96,6 +102,8 @@ const routes: Routes = [
     MatOptionModule,
     NgxSpinnerModule,
     MatPaginatorModule,
+    MatBadgeModule,
+    ToastrModule.forRoot(),
     RouterModule.forRoot(routes),
 
   ],

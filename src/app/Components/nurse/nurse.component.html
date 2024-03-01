@@ -3,9 +3,11 @@
     <div>
       <h2>Available Nurse</h2>
     </div>
+
     <div style="display: flex; justify-content: space-between;">
       <div>
           <button style="margin: 10px;" mat-raised-button color="primary" (click)="addNurse()">Add</button>
+          <button style="margin: 10px;" mat-raised-button color="primary" (click)="onBlock()">See On Call</button>
       </div>
   
       <mat-form-field>
@@ -15,8 +17,8 @@
 
     </div>
 
-    <div>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" >
 
             <ng-container matColumnDef="nurseId">
               <th mat-header-cell *matHeaderCellDef> Nurse Id </th>
@@ -54,10 +56,10 @@
 </div>
 
 <br><br>
-<div style="margin: 0px 40px ;">
+<!-- <div style="margin: 0px 40px ;">
 
   <div>
     <h2>Service On Block</h2>
   </div>
   <app-on-call></app-on-call>
-</div>
+</div> -->

@@ -6,6 +6,7 @@ import { HttpService } from 'src/app/Services/http.service';
 import { OnCallDialogComponent } from './on-call-dialog/on-call-dialog.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { DeletePopupComponent } from '../../delete-popup/delete-popup.component';
 
 @Component({
   selector: 'app-on-call',
@@ -55,12 +56,27 @@ export class OnCallComponent {
 
 
   deleteOnCall(element){
-    let onCall={onCallId:element.onCallId, nurseId:element.nurse.nurseId, blockId:1, onCallStart:element.onCallStart, onCallEnd:element.onCallEnd}
+    this.openDeleteOncallDialog(element)
+  }
+
+
+  openDeleteOncallDialog(element) {
+    const dialogRef = this.dialog.open(DeletePopupComponent,
+      {data:{
+        head:'OnCall',
+        content:element.nurse.name
+      }});
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'delete') {
+        let onCall={onCallId:element.onCallId, nurseId:element.nurse.nurseId, blockId:1, onCallStart:element.onCallStart, onCallEnd:element.onCallEnd}
     this.http.deleteOnCall(onCall).subscribe((data)=>{
       this.http.getOnCalls().subscribe((data)=>{
         this.service.onCallSubject.next(data)
       })
     })
+    } 
+    });
   }
 
   openDialog(oncall, action) {
